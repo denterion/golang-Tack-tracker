@@ -7,12 +7,12 @@ import (
 	"task-tracker/internal/repository"
 )
 
-func main(){
+func main() {
 	db, err := repository.NewDB()
-	if err != nil{
+	if err != nil {
 		log.Fatal(err)
 	}
-	
+
 	fmt.Println("Connected to database!")
 
 	defer db.Close(context.Background())
