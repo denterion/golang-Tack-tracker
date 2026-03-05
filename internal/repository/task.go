@@ -40,3 +40,17 @@ func (r *Repository) GetTasks() ([]*model.Task, error) {
 	}
 	return tasks, nil
 }
+
+func (r *Repository) UpdateTask(t *model.Task) error {
+	sql := `UPDATE tasks
+	SET title=$1, description=$2, status=$3
+	WHERE id=$4`
+	_, err := r.db.Exec(context.Background(), sql, t.Title, t.Description, t.Status, t.ID)
+	return err
+}
+
+func (r *Repository) DeleteTask(id int) error {
+	sql := `DELETE FROM tasks WHERE id=$1`
+	_, err := r.db.Exec(context.Background(), sql, id)
+	return err
+}

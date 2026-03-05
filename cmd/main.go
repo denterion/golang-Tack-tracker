@@ -41,4 +41,43 @@ func main() {
 	for _, t := range tasks {
 		fmt.Println(t)
 	}
+
+	task.Title = "Обнова"
+	task.Description = "Уху"
+	task.Status = "done"
+
+	err = repo.UpdateTask(task)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("Задача Обновлена!")
+
+	tasks, err = repo.GetTasks()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("Список после обновления")
+
+	for _, t := range tasks {
+		fmt.Println(t)
+	}
+
+	err = repo.DeleteTask(task.ID)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("Задача удалена!")
+
+	tasks, err = repo.GetTasks()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("Список после удаления")
+	for _, t := range tasks {
+		fmt.Println(t)
+	}
 }
