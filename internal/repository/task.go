@@ -19,3 +19,24 @@ func (r *Repository) CreateTask(t *model.Task) error {
 	sql := `INSERT INTO tasks (title, description, status) VALUES ($1, $2, $3) RETURNING id, created_at`
 	return r.db.QueryRow(context.Background(), sql, t.Title, t.Description, t.Status).Scan(&t.ID, &t.CreatedAt)
 }
+
+func (r *Repository) GetTasks() ([]*model.Task, error) {
+	sql := `SELECT id, title, description, status, created_at FROM tasks ORDER BY id`
+	rows, err := r.db.Query(context.Background(), sql)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var tasks []*model.Task
+
+	for rows.Next() {
+		t := &model.Task{}
+		err := rows.Scan(&t.ID, &t.Title, &t.Description, &t.Status, &t.CreatedAt)
+		if err != nil {
+			return nil, err
+		}
+		tasks = append(tasks, t)
+	}
+	return tasks, nil
+}

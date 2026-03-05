@@ -31,4 +31,14 @@ func main() {
 		log.Fatal(err)
 	}
 	fmt.Println("Создана первая задача", task)
+
+	tasks, err := repo.GetTasks()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("Список всех задач: ")
+	for _, t := range tasks {
+		fmt.Println(t)
+	}
 }
