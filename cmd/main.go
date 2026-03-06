@@ -19,6 +19,10 @@ func main() {
 
 	defer db.Close(context.Background())
 
+	if err := repository.RunMigrations(db); err != nil{
+		log.Fatal(err)
+	}
+
 	repo := repository.NewRepository(db)
 	service := service.NewTaskService(repo)
 	handler := handler.NewHandler(service)
