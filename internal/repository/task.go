@@ -41,6 +41,19 @@ func (r *Repository) GetTasks() ([]*model.Task, error) {
 	return tasks, nil
 }
 
+func (r *Repository) GetTaskByID(id int) (*model.Task, error){
+	sql := `SELECT id, title, description, status, created_at FROM tasks WHERE id=$1`
+
+	var t model.Task
+
+	err := r.db.QueryRow(context.Background(), sql, id).Scan(&t.ID, &t.Title, &t.Description, &t.Status, &t.CreatedAt)
+	if err != nil{
+		return nil, err
+	}
+	
+	return &t, nil
+}
+
 func (r *Repository) UpdateTask(t *model.Task) error {
 	sql := `UPDATE tasks
 	SET title=$1, description=$2, status=$3
