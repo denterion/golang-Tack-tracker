@@ -4,7 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
-<title>Task-Tracker FerrochiniJ</title>
+<title>About | Task-Tracker FerrochiniJ</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -22,7 +22,7 @@
 </div>
 
 <nav>
-<a href="about.html">About</a>
+<a href="index.html">Tasks</a>
 </nav>
 
 </div>
@@ -32,28 +32,38 @@
 
 <main class="main">
 
-<div class="container">
+<div class="container about">
 
-<section class="create-task">
+<h2>About Project</h2>
 
-<h2>Create task</h2>
+<p>
+Task-Tracker FerrochiniJ is a lightweight task management system
+built as a full-stack learning project.
+</p>
 
-<input id="title" placeholder="Task title">
+<p>
+The goal of the project is to demonstrate how a modern backend
+written in Go can interact with a simple web frontend through
+a REST API.
+</p>
 
-<input id="description" placeholder="Task description">
+<h3>Technology Stack</h3>
 
-<button onclick="createTask()">Create Task</button>
+<ul>
 
-</section>
+<li>Go</li>
 
+<li>Echo Framework</li>
 
-<section class="tasks-section">
+<li>PostgreSQL</li>
 
-<h2>Tasks</h2>
+<li>REST API</li>
 
-<div id="tasks" class="tasks-grid"></div>
+<li>JavaScript</li>
 
-</section>
+<li>HTML / CSS</li>
+
+</ul>
 
 </div>
 
@@ -73,8 +83,6 @@ andrecentov.space
 </div>
 
 </footer>
-
-<script src="script.js"></script>
 
 </body>
 </html>
