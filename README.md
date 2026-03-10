@@ -87,6 +87,7 @@ task-tracker
 
 ## 1 Clone repository
 git clone https://github.com/yourusername/task-tracker.git
+
 cd task-tracker
 
 ---
@@ -107,6 +108,7 @@ Swagger:
 Используется PostgreSQL.
 
 Миграция:
+
     migrations/001_create_tasks_table.sql
 
 Пример структуры таблицы:
