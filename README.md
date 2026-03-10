@@ -131,9 +131,9 @@ Get tasks:
 
     GET /tasks
 
-Get tasks:
+Get tasks by id:
 
-    GET /tasks
+    GET /tasks{id}
 
 Create task:
 
@@ -149,9 +149,9 @@ Update task:
 
     PUT /tasks/{id}
 
-Update task:
+Delete task:
 
-    PUT /tasks/{id}
+    DELETE /tasks/{id}
 
 ---
 
