@@ -126,20 +126,29 @@ CREATE TABLE tasks (
 # 📡 API Endpoints
 
 Get tasks:
+
     GET /tasks
+
 Get tasks:
+
     GET /tasks
+
 Create task:
+
     POST /tasks
+
     Example body:
         {
         "title": "Learn Go",
         "description": "Build REST API"
         }
+
 Update task:
+
     PUT /tasks/{id}
 
 Update task:
+
     PUT /tasks/{id}
 
 ---
@@ -161,15 +170,12 @@ http://localhost:8080/swagger/index.html
 В проекте есть простой frontend для тестирования API.
 
 web/
+
     Страницы:
-
         index.html
-
         about.html
     Файлы:
-
         script.js
-
         style.css
 
 ---
