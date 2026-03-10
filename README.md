@@ -202,8 +202,10 @@ web/
     Поднимаются сервисы:
         API
         PostgreSQL
+---
 
-Author
+#Author
 
     &Andrew
     &Go Backend Developer
+    &Contacts: andrecentov.space, or TG: @hannaXmontana
