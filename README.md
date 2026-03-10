@@ -118,7 +118,8 @@ CREATE TABLE tasks (
     description TEXT,
     status TEXT DEFAULT 'todo',
     created_at TIMESTAMP DEFAULT NOW()
-);```
+);
+```
 
 ---
 
