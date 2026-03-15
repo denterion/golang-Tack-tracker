@@ -172,9 +172,11 @@ http://localhost:8080/swagger/index.html
 В проекте есть простой frontend для тестирования API.
 
 web/
+
     Страницы:
         index.html
         about.html
+    
     static:
         script.js
         style.css
