@@ -69,8 +69,11 @@ func main() {
 		AllowMethods: []string{echo.GET, echo.POST, echo.PUT, echo.DELETE},
 	}))
 
-	e.Static("/", "web")
+	e.Static("/static", "web/static")
+	e.Static("/images", "web")
+	
 	e.File("/", "web/index.html")
+	e.File("/about", "web/about.html")
 
 	e.GET("/swagger/*", echoSwagger.WrapHandler)
 

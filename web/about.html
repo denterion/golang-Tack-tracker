@@ -2,87 +2,67 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About | Task-Tracker FerrochiniJ</title>
-
-<link rel="stylesheet" href="style.css">
-
+<link rel="stylesheet" href="/static/style.css">
 </head>
 
 <body>
-
 <header class="header">
+  <div class="header-container">
+    <div class="logo-block">
+      <img src="/static/logo.png" class="logo" alt="Task-Tracker Logo">
+      <h1>Task-Tracker <span>FerrochiniJ</span></h1>
+    </div>
 
-<div class="header-container">
+    <nav>
+      <a href="/">Tasks</a>
+      <a href="/about">About</a>
+    </nav>
 
-<div class="logo-block">
-<img src="logo.png" class="logo">
-<h1>Task-Tracker <span>FerrochiniJ</span></h1>
-</div>
-
-<nav>
-<a href="index.html">Tasks</a>
-</nav>
-
-</div>
-
+    <!-- Theme toggle справа -->
+    <!-- Theme toggle справа -->
+    <div class="theme-switch-wrapper">
+        <span class="moon">🌙</span>
+        <label class="theme-switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider"></span>
+        </label>
+        <span class="sun">☀️</span>
+    </div>
+  </div>
 </header>
 
-
 <main class="main">
-
-<div class="container about">
-
-<h2>About Project</h2>
-
-<p>
-Task-Tracker FerrochiniJ is a lightweight task management system
-built as a full-stack learning project.
-</p>
-
-<p>
-The goal of the project is to demonstrate how a modern backend
-written in Go can interact with a simple web frontend through
-a REST API.
-</p>
-
-<h3>Technology Stack</h3>
-
-<ul>
-
-<li>Go</li>
-
-<li>Echo Framework</li>
-
-<li>PostgreSQL</li>
-
-<li>REST API</li>
-
-<li>JavaScript</li>
-
-<li>HTML / CSS</li>
-
-</ul>
-
-</div>
-
+  <div class="container about">
+    <h2>About Project</h2>
+    <p>
+      Task-Tracker FerrochiniJ is a modern, lightweight task management system
+      designed as a full-stack learning project.
+    </p>
+    <p>
+      The goal is to showcase how a Go backend with REST API communicates
+      seamlessly with a stylish frontend.
+    </p>
+    <h3>Technology Stack</h3>
+    <ul class="tech-stack">
+      <li>Go</li>
+      <li>Echo Framework</li>
+      <li>PostgreSQL</li>
+      <li>REST API</li>
+      <li>JavaScript</li>
+      <li>HTML / CSS</li>
+    </ul>
+  </div>
 </main>
 
-
 <footer class="footer">
-
-<div class="footer-container">
-
-<p>© 2026 Task-Tracker FerrochiniJ</p>
-
-<a href="https://andrecentov.space" target="_blank">
-andrecentov.space
-</a>
-
-</div>
-
+  <div class="footer-container">
+    <p>© 2026 Task-Tracker FerrochiniJ</p>
+    <a href="https://andrecentov.space" target="_blank">andrecentov.space</a>
+  </div>
 </footer>
-
+    <script src="/static/theme.js"></script>
 </body>
 </html>

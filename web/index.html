@@ -2,79 +2,60 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Task-Tracker FerrochiniJ</title>
-
-<link rel="stylesheet" href="style.css">
-
+<link rel="stylesheet" href="/static/style.css">
 </head>
 
 <body>
-
 <header class="header">
+  <div class="header-container">
+    <div class="logo-block">
+      <img src="/static/logo.png" class="logo" alt="Task-Tracker Logo">
+      <h1>Task-Tracker <span>FerrochiniJ</span></h1>
+    </div>
 
-<div class="header-container">
+    <nav>
+      <a href="/">Tasks</a>
+      <a href="/about">About</a>
+    </nav>
 
-<div class="logo-block">
-<img src="logo.png" class="logo">
-<h1>Task-Tracker <span>FerrochiniJ</span></h1>
-</div>
-
-<nav>
-<a href="about.html">About</a>
-</nav>
-
-</div>
-
+    <!-- Theme toggle справа -->
+    <!-- Theme toggle справа -->
+    <div class="theme-switch-wrapper">
+        <span class="moon">🌙</span>
+        <label class="theme-switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider"></span>
+        </label>
+        <span class="sun">☀️</span>
+    </div>
 </header>
 
-
 <main class="main">
+  <div class="container">
+    <section class="create-task">
+      <h2>Create task</h2>
+      <input id="title" placeholder="Task title">
+      <input id="description" placeholder="Task description">
+      <button onclick="createTask()">Create Task</button>
+    </section>
 
-<div class="container">
-
-<section class="create-task">
-
-<h2>Create task</h2>
-
-<input id="title" placeholder="Task title">
-
-<input id="description" placeholder="Task description">
-
-<button onclick="createTask()">Create Task</button>
-
-</section>
-
-
-<section class="tasks-section">
-
-<h2>Tasks</h2>
-
-<div id="tasks" class="tasks-grid"></div>
-
-</section>
-
-</div>
-
+    <section class="tasks-section">
+      <h2>Tasks</h2>
+      <div id="tasks" class="tasks-grid"></div>
+    </section>
+  </div>
 </main>
 
-
 <footer class="footer">
-
-<div class="footer-container">
-
-<p>© 2026 Task-Tracker FerrochiniJ</p>
-
-<a href="https://andrecentov.space" target="_blank">
-andrecentov.space
-</a>
-
-</div>
-
+  <div class="footer-container">
+    <p>© 2026 Task-Tracker FerrochiniJ</p>
+    <a href="https://andrecentov.space" target="_blank">andrecentov.space</a>
+  </div>
 </footer>
 
-<script src="script.js"></script>
-
+<script src="/static/script.js"></script>
 </body>
 </html>
