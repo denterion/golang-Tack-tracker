@@ -33,7 +33,15 @@ func NewDB() (*pgx.Conn, error) {
 		dbname = "tasktracker"
 	}
 
-	dsn := fmt.Sprintf("postgres://%s:%s@%s:%s/%s", user, password, host, port, dbname)
+	dsn := fmt.Sprintf(
+		"postgres://%s:%s@%s:%s/%s",
+		user,
+		password,
+		host,
+		port,
+		dbname,
+	)
+	log.Println("Connected to database")
 	return pgx.Connect(context.Background(), dsn)
 }
 

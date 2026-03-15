@@ -21,12 +21,16 @@ func (h *Handler) CreateTask(c echo.Context) error {
 	t := new(model.Task)
 
 	if err := c.Bind(t); err != nil {
-		return c.JSON(http.StatusBadRequest, err)
+		return c.JSON(http.StatusBadRequest, map[string]string{
+			"error": "invalid request body",
+		})
 	}
 
 	err := h.service.CreateTask(t)
 	if err != nil {
-		return c.JSON(http.StatusInternalServerError, err)
+		return c.JSON(http.StatusInternalServerError, map[string]string{
+			"error": err.Error(),
+		})
 	}
 
 	return c.JSON(http.StatusCreated, t)
@@ -51,7 +55,9 @@ func (h *Handler) GetTask(c echo.Context) error {
 
 	task, err := h.service.GetTask(id)
 	if err != nil {
-		return c.JSON(http.StatusInternalServerError, err)
+		return c.JSON(http.StatusInternalServerError, map[string]string{
+			"error": "task not found",
+		})
 	}
 	return c.JSON(http.StatusOK, task)
 }
@@ -73,7 +79,9 @@ func (h *Handler) UpdateTask(c echo.Context) error {
 
 	err = h.service.UpdateTask(t)
 	if err != nil {
-		return c.JSON(http.StatusInternalServerError, err)
+		return c.JSON(http.StatusInternalServerError, map[string]string{
+			"error": err.Error(),
+		})
 	}
 
 	return c.JSON(http.StatusOK, t)
@@ -89,7 +97,9 @@ func (h *Handler) DeleteTask(c echo.Context) error {
 	err = h.service.DeleteTask(id)
 
 	if err != nil {
-		return c.JSON(http.StatusInternalServerError, err)
+		return c.JSON(http.StatusInternalServerError, map[string]string{
+			"error": "failed to delete task",
+		})
 	}
 
 	return c.JSON(http.StatusOK, map[string]string{

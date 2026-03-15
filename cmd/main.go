@@ -1,13 +1,9 @@
-// @title Task Tracker API
-// @version 1.0
-// @description API для управления задачами
-// @host localhost:8080
-// @BasePath /
 package main
 
 import (
 	"context"
 	"log"
+
 	_ "task-tracker/docs"
 	"task-tracker/internal/handler"
 	"task-tracker/internal/repository"
@@ -19,12 +15,17 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 )
 
+// @title Task Tracker API
+// @version 1.0
+// @description API для управления задачами
+// @host localhost:8080
+// @BasePath /
+
 func main() {
 	db, err := repository.NewDB()
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	defer db.Close(context.Background())
 
 	if err := repository.RunMigrations(db); err != nil {
@@ -32,22 +33,52 @@ func main() {
 	}
 
 	repo := repository.NewRepository(db)
-	service := service.NewTaskService(repo)
-	handler := handler.NewHandler(service)
+	taskService := service.NewTaskService(repo)
+	h := handler.NewHandler(taskService)
 
 	e := echo.New()
 
-	e.Use(middleware.RequestLogger())
 	e.Use(middleware.Recover())
-	e.Use(middleware.CORS())
+
+	e.Use(middleware.RequestLoggerWithConfig(middleware.RequestLoggerConfig{
+		LogURI:     true,
+		LogStatus:  true,
+		LogMethod:  true,
+		LogLatency: true,
+		LogError:   true,
+
+		LogValuesFunc: func(c echo.Context, v middleware.RequestLoggerValues) error {
+			if v.Error != nil {
+				c.Logger().Error(v.Error)
+			}
+
+			c.Logger().Infof(
+				"%s %s %d %v",
+				v.Method,
+				v.URI,
+				v.Status,
+				v.Latency,
+			)
+
+			return nil
+		},
+	}))
+
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"*"},
+		AllowMethods: []string{echo.GET, echo.POST, echo.PUT, echo.DELETE},
+	}))
+
 	e.Static("/", "web")
 	e.File("/", "web/index.html")
-	e.POST("/tasks", handler.CreateTask)
+
 	e.GET("/swagger/*", echoSwagger.WrapHandler)
-	e.GET("/tasks", handler.GetTasks)
-	e.GET("/tasks/:id", handler.GetTask)
-	e.PUT("/tasks/:id", handler.UpdateTask)
-	e.DELETE("/tasks/:id", handler.DeleteTask)
+
+	e.POST("/tasks", h.CreateTask)
+	e.GET("/tasks", h.GetTasks)
+	e.GET("/tasks/:id", h.GetTask)
+	e.PUT("/tasks/:id", h.UpdateTask)
+	e.DELETE("/tasks/:id", h.DeleteTask)
 
 	e.Logger.Fatal(e.Start(":8080"))
 }
